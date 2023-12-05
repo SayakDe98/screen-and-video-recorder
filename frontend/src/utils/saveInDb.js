@@ -12,12 +12,16 @@ export const saveInDb = async (fileBlob, token) => {
             Date.now().toString(36),
         };
        formData.append('file', file);
-        const result = await axios.post("http://localhost:4000/api/files/upload", formData, {
+        const result = await axios.post(
+          `${process.env.REACT_APP_URL}/api/files/upload`,
+          formData,
+          {
             headers: {
-                "Content-Type": "multipart/form-data",
-                "Authorization": token,
-            }
-        });
+              "Content-Type": "multipart/form-data",
+              Authorization: token,
+            },
+          }
+        );
         return result;
     } catch (error) {
         console.log(error);
